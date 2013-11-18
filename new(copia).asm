@@ -1,5 +1,5 @@
 TITLE MASM Template						(main.asm)
-
+;linea de prueba para github
 ;NOTAS:
 ;***CON NOTEPAD++ PUEDES DISTINGIR LAS COSAS POR COLORES :D
 ;***TODOS LAS VAIRABLES MENSAJES COMIENZAN CON "m"
@@ -76,7 +76,7 @@ auxnumpuntos DWORD ?	;auxiliar numero de puntos
 valEntero DWORD ?		;valor del Entero
 auxaux DWORD ?	
 
-
+,linea de prueba 2 para github
 ;///////////////VARIABLES PARA TEXTO<INICIO>////////////////
 mx BYTE "X : ",0dh,0ah,0	;texto para preguntar o pedir
 my BYTE "Y : ",0dh,0ah,0	;texto para preguntar o pedir
