@@ -14,6 +14,7 @@ bytesEscritos DWORD ?
 cad1 BYTE "No se puede crear el archivo",0dh,0ah,0
 cad2 BYTE "Bytes escritos en el archivo [salida.txt]:",0
 cad3 BYTE "Escriba hasta 500 caracteres y oprima "
+cad4 BYTE "chupame la derecha"
 BYTE "[Intro]: ",0dh,0ah,0
 
 
@@ -24,7 +25,7 @@ main PROC
 ; Crea un nuevo archivo de texto.
 	mov edx,OFFSET nombrearchivo
 	call CreateOutputFile
-	mov manejadorArchivo,eax
+	mov manejadorArchivo,eax  ;////EN ESTE HP ESTA EL TEXTO QUE SE INTRODICE
 
 ; Comprueba errores.
 		cmp eax, INVALID_HANDLE_VALUE ; ¿se encontró un error?
@@ -37,16 +38,19 @@ main PROC
 ; Pide al usuario que introduzca una cadena.
 	mov edx,OFFSET cad3 ; "Escriba hasta ...."
 	call WriteString
-	mov ecx,TAM_BUFER ; Recibe una cadena como entrada
-	mov edx,OFFSET bufer
+	mov ecx,TAM_BUFER ; Recibe una cadena como entrada  --> //////////ES EL NUMERO DE BITS DISPONIBLES
+	mov edx,OFFSET bufer	;--> //////////////ES EL DESPLAZAMIENTO DEL BUFER
 	call ReadString
 	mov longitudCadena,eax ; cuenta los caracteres introducidos
-
+	;mov eax, manejadorArchivo
+	call WriteString
+	
 ; Escribe el búfer en el archivo de salida.
 	mov eax,manejadorArchivo
 	mov edx,OFFSET bufer
 	mov ecx,longitudCadena
 	call WriteToFile
+	
 	mov bytesEscritos,eax ; guarda el valor de retorno
 	call CloseFile
 
